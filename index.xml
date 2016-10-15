@@ -2,23 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Reverie</title>
-    <link>http://darkdefender27.github.io/index.xml</link>
+    <link>https://darkdefender27.github.io/index.xml</link>
     <description>Recent content on Reverie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
-    <lastBuildDate>Fri, 14 Oct 2016 00:32:05 +0530</lastBuildDate>
-    <atom:link href="http://darkdefender27.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>good to great</title>
-      <link>http://darkdefender27.github.io/post/good-to-great/</link>
-      <pubDate>Fri, 14 Oct 2016 00:32:05 +0530</pubDate>
-      
-      <guid>http://darkdefender27.github.io/post/good-to-great/</guid>
-      <description>&lt;p&gt;I read &lt;strong&gt;Good to Great in January 2016&lt;/strong&gt;. An awesome read sharing detailed analysis on how good companies became great.&lt;/p&gt;
-</description>
-    </item>
+    <atom:link href="https://darkdefender27.github.io/index.xml" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>
