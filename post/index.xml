@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Reverie</title>
-    <link>http://darkdefender27.github.io/index.xml</link>
-    <description>Recent content on Reverie</description>
+    <title>Post-rsses on Reverie</title>
+    <link>http://darkdefender27.github.io/post/index.xml</link>
+    <description>Recent content in Post-rsses on Reverie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
     <lastBuildDate>Fri, 14 Oct 2016 00:32:05 +0530</lastBuildDate>
-    <atom:link href="http://darkdefender27.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://darkdefender27.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>good to great</title>
