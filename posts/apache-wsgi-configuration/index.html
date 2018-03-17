@@ -2,7 +2,7 @@
 <html lang="en-us">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reverie</title>
+<title>Deploy python wsgi apps using Gunicorn behind Apache | Reverie</title>
 <link rel="stylesheet" href="https://darkdefender27.github.io//css/style.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
@@ -56,58 +56,32 @@
 
 <section class="section">
   <div class="container">
-    
-    <article>
-      <h2 class="subtitle is-6">February 17, 2018</h2>
-      <h1 class="title"><a href="https://darkdefender27.github.io/posts/apache-wsgi-configuration/">Deploy python wsgi apps using Gunicorn behind Apache</a></h1>
-      <div class="content">
-        TLDR; In this post I have penned down my experience in configuring apache to interact with apps written in Python.
-The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.
-        
-      </div>
-    </article>
-    
-    <article>
-      <h2 class="subtitle is-6">October 14, 2016</h2>
-      <h1 class="title"><a href="https://darkdefender27.github.io/post/good-to-great/">good to great</a></h1>
-      <div class="content">
-        Reading The Affair by Lee Child. An awesome read, a Jack Reacher thriller.
-        
-      </div>
-    </article>
-    
+    <h2 class="subtitle is-6">February 17, 2018</h2>
+    <h1 class="title">Deploy python wsgi apps using Gunicorn behind Apache</h1>
+    <div class="content">
+      <p><strong>TLDR;</strong> In this post I have penned down my experience in configuring apache to interact with apps written in Python.</p>
+
+<p>The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</p>
+
+    </div>
   </div>
 </section>
+
 <section class="section">
   <div class="container">
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <div class="level-item">
-          
-          <a class="button is-disabled">
-            <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-left"></i>
-            </span>
-            Newer
-          </a>
-          
-        </div>
-      </div>
-      <div class="level-right is-marginless">
-        <div class="level-item">
-          
-          <a class="button is-disabled">
-            Older
-            <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </a>
-          
-        </div>
-      </div>
-    </nav>
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'shubhamutwal';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
   </div>
 </section>
+
 
 <section class="section">
   <div class="container has-text-centered">
