@@ -29,6 +29,10 @@ The day of the workshop, we were expected to be ready with our own crazy setup, 
 <p>The final segment of the workshop dealt with <code>core-async</code>. The same pattern was followed here as well, concepts and then exercises which worked-up those concepts. During this segment, I learnt how, using <em>core-async</em>, one can solve or scale the earlier problem of reading and processing data from a source, when your source is emitting out data in realtime (Streams!). To end the workshop, we solved the exercise, using <em>core-async&rsquo;s</em> channels; the exercise already had a base streaming solution in place with appropriate expressions to be filled in the blanks.</p>
 
 <p>The content of the workshop had a good amount of variation, it went on from basics to intermediate to some advanced clojure at an appropriate pace. A well documented workshop material is made available on <a href="https://github.com/inclojure-org/intermediate-clojure-workshop/" target="_blank">Github</a>. So, just clone your way into the world of Fun Fun Functions!</p>
+
+<hr />
+
+<p><img src="../../images/lanyard_in_clojure_2019.jpg" alt="img" /></p>
 ]]></content>
 		</item>
 		
