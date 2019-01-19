@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts-rsses on Reverie</title>
-    <link>https://darkdefender27.github.io/posts/index.xml</link>
-    <description>Recent content in Posts-rsses on Reverie</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
-    <lastBuildDate>Sat, 17 Feb 2018 12:44:44 +0530</lastBuildDate>
-    <atom:link href="https://darkdefender27.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Deploy python wsgi apps using Gunicorn behind Apache</title>
-      <link>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</link>
-      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
-      
-      <guid>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;TLDR;&lt;/strong&gt; In this post I have penned down my experience in configuring apache to interact with apps written in Python.&lt;/p&gt;
+	<channel>
+		<title>Posts on Shubham Utwal</title>
+		<link>https://darkdefender27.github.io/posts/</link>
+		<description>Recent content in Posts on Shubham Utwal</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
+		<lastBuildDate>Sat, 17 Feb 2018 12:44:44 +0530</lastBuildDate>
+		<atom:link href="https://darkdefender27.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Apache Wsgi Configuration</title>
+			<link>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</link>
+			<pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+			
+			<guid>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</guid>
+			<description>TLDR; In this post I have penned down my experience in configuring apache to interact with apps written in Python.
+The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</description>
+			<content type="html"><![CDATA[<p>TLDR; In this post I have penned down my experience in configuring apache to interact with apps written in Python.</p>
 
-&lt;p&gt;The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.&lt;/p&gt;
-</description>
-    </item>
-    
-  </channel>
+<p>The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</p>
+]]></content>
+		</item>
+		
+	</channel>
 </rss>

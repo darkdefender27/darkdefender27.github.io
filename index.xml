@@ -7,9 +7,29 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
+    <lastBuildDate>Sat, 19 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://darkdefender27.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>https://darkdefender27.github.io/about/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://darkdefender27.github.io/about/</guid>
+      <description>This is supposed to be about me!</description>
+    </item>
+    
+    <item>
+      <title>Apache Wsgi Configuration</title>
+      <link>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</link>
+      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+      
+      <guid>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</guid>
+      <description>TLDR; In this post I have penned down my experience in configuring apache to interact with apps written in Python.
+The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</description>
+    </item>
     
   </channel>
 </rss>
