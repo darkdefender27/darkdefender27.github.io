@@ -16,9 +16,9 @@
 			<pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
 			
 			<guid>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</guid>
-			<description>TLDR; In this post I have penned down my experience in configuring apache to interact with apps written in Python.
+			<description>TLDR; In this post I have put down my experience in configuring apache to interact with apps written in Python.
 The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</description>
-			<content type="html"><![CDATA[<p>TLDR; In this post I have penned down my experience in configuring apache to interact with apps written in Python.</p>
+			<content type="html"><![CDATA[<p>TLDR; In this post I have put down my experience in configuring apache to interact with apps written in Python.</p>
 
 <p>The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</p>
 ]]></content>

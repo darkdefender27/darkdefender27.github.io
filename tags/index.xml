@@ -7,9 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
+    <lastBuildDate>Sat, 17 Feb 2018 12:44:44 +0530</lastBuildDate>
     
 	<atom:link href="https://darkdefender27.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Apache</title>
+      <link>https://darkdefender27.github.io/tags/apache/</link>
+      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+      
+      <guid>https://darkdefender27.github.io/tags/apache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gunicorn</title>
+      <link>https://darkdefender27.github.io/tags/gunicorn/</link>
+      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+      
+      <guid>https://darkdefender27.github.io/tags/gunicorn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://darkdefender27.github.io/tags/python/</link>
+      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+      
+      <guid>https://darkdefender27.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wsgi</title>
+      <link>https://darkdefender27.github.io/tags/wsgi/</link>
+      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+      
+      <guid>https://darkdefender27.github.io/tags/wsgi/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
