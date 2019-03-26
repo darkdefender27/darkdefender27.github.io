@@ -7,8 +7,57 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
-		<lastBuildDate>Sat, 19 Jan 2019 23:26:56 +0530</lastBuildDate>
+		<lastBuildDate>Tue, 26 Mar 2019 23:13:20 +0530</lastBuildDate>
 		<atom:link href="https://darkdefender27.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Essential Postgresql Queries</title>
+			<link>https://darkdefender27.github.io/posts/postgresql-commands/</link>
+			<pubDate>Tue, 26 Mar 2019 23:13:20 +0530</pubDate>
+			
+			<guid>https://darkdefender27.github.io/posts/postgresql-commands/</guid>
+			<description>This post has a collated list of postgresql queries (taken from multiple sources) which are used on an almost daily basis.
+Age of unfrozen rows SELECT c.oid::regclass as table_name, greatest(age(c.relfrozenxid),age(t.relfrozenxid)) as age FROM pg_class c LEFT JOIN pg_class t ON c.reltoastrelid = t.oid WHERE c.relkind IN (&amp;#39;r&amp;#39;, &amp;#39;m&amp;#39;);SELECT datname, age(datfrozenxid) FROM pg_database; The age column measures the number of transactions from the cutoff XID to the current transaction&amp;rsquo;s XID. Here, the cutoff XID, relfrozenxid is the freeze cutoff XID that was used by the last whole-table VACUUM; likewise datfrozenxid is the lower bound on unfrozen XIDs for that database.</description>
+			<content type="html"><![CDATA[
+
+<p>This post has a collated list of postgresql queries (taken from multiple sources) which are used on an almost daily basis.</p>
+
+<hr />
+
+<h2 id="age-of-unfrozen-rows">Age of unfrozen rows</h2>
+<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">SELECT c.oid::regclass as table_name,
+       greatest(age(c.relfrozenxid),age(t.relfrozenxid)) as age
+FROM pg_class c
+LEFT JOIN pg_class t ON c.reltoastrelid = t.oid
+WHERE c.relkind IN (&#39;r&#39;, &#39;m&#39;);</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">SELECT datname, age(datfrozenxid) FROM pg_database;</code></pre></div>
+<p>The age column measures the number of transactions from the cutoff XID to the current transaction&rsquo;s XID. Here, the cutoff XID, <code>relfrozenxid</code> is the freeze cutoff XID that was used by the last whole-table VACUUM; likewise <code>datfrozenxid</code> is the lower bound on unfrozen XIDs for that database.</p>
+
+<hr />
+
+<h2 id="currently-running-queries">Currently running queries</h2>
+<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">SELECT pid, query, query_start FROM pg_stat_activity where state = &#39;active&#39;;</code></pre></div>
+<hr />
+
+<h2 id="replication-status-on-master-slave">Replication Status on Master/Slave</h2>
+<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql"># check replication/streaming status on MASTER
+SELECT application_name,client_addr,state, \\
+                 (sent_offset - (replay_offset - (sent_xlog - replay_xlog) * 255 * 16 ^ 6 ))::text AS byte_lag \\
+                  FROM (SELECT \\
+application_name,client_addr,state,sync_state,sent_lsn,write_lsn,replay_lsn, \\
+                          (&#39;x&#39; || lpad(split_part(sent_lsn::text,   &#39;/&#39;, 1), 8, &#39;0&#39;))::bit(32)::bigint AS sent_xlog, \\
+                          (&#39;x&#39; || lpad(split_part(replay_lsn::text, &#39;/&#39;, 1), 8, &#39;0&#39;))::bit(32)::bigint AS replay_xlog, \\
+                          (&#39;x&#39; || lpad(split_part(sent_lsn::text,   &#39;/&#39;, 2), 8, &#39;0&#39;))::bit(32)::bigint AS sent_offset, \\
+                          (&#39;x&#39; || lpad(split_part(replay_lsn::text, &#39;/&#39;, 2), 8, &#39;0&#39;))::bit(32)::bigint AS replay_offset \\
+                        FROM pg_stat_replication) \\
+                  AS s;
+
+# check time elapsed since last replication on SLAVE
+select now() - pg_last_xact_replay_timestamp() AS replication_delay;</code></pre></div>
+<hr />
+
+<h2 id="time-when-auto-vacuum-auto-analyze-last-ran">Time when (auto)vacuum &amp; (auto)analyze last ran</h2>
+<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">select relname, last_vacuum, last_autovacuum, last_analyze, last_autoanalyze from pg_stat_user_tables;</code></pre></div>]]></content>
+		</item>
 		
 		<item>
 			<title>IN/Clojure 2019</title>

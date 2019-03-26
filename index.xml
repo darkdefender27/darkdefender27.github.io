@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
-    <lastBuildDate>Sat, 19 Jan 2019 23:26:56 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 26 Mar 2019 23:13:20 +0530</lastBuildDate>
     
 	<atom:link href="https://darkdefender27.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Essential Postgresql Queries</title>
+      <link>https://darkdefender27.github.io/posts/postgresql-commands/</link>
+      <pubDate>Tue, 26 Mar 2019 23:13:20 +0530</pubDate>
+      
+      <guid>https://darkdefender27.github.io/posts/postgresql-commands/</guid>
+      <description>This post has a collated list of postgresql queries (taken from multiple sources) which are used on an almost daily basis.
+Age of unfrozen rows SELECT c.oid::regclass as table_name, greatest(age(c.relfrozenxid),age(t.relfrozenxid)) as age FROM pg_class c LEFT JOIN pg_class t ON c.reltoastrelid = t.oid WHERE c.relkind IN (&amp;#39;r&amp;#39;, &amp;#39;m&amp;#39;);SELECT datname, age(datfrozenxid) FROM pg_database; The age column measures the number of transactions from the cutoff XID to the current transaction&amp;rsquo;s XID. Here, the cutoff XID, relfrozenxid is the freeze cutoff XID that was used by the last whole-table VACUUM; likewise datfrozenxid is the lower bound on unfrozen XIDs for that database.</description>
+    </item>
     
     <item>
       <title>IN/Clojure 2019</title>
