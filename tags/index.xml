@@ -1,68 +1,68 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Shubham Utwal</title>
-    <link>https://darkdefender27.github.io/tags/</link>
+    <link>https://shubhamutwal.in/tags/</link>
     <description>Recent content in Tags on Shubham Utwal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
-    <lastBuildDate>Sat, 17 Feb 2018 12:44:44 +0530</lastBuildDate>
+    <copyright>&amp;copy; &lt;a href=&#34;https://shubhamutwal.in&#34;&gt;Shubham Utwal&lt;/a&gt; 2021</copyright>
+    <lastBuildDate>Tue, 26 Mar 2019 23:13:20 +0530</lastBuildDate>
     
-	<atom:link href="https://darkdefender27.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://shubhamutwal.in/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Apache</title>
-      <link>https://darkdefender27.github.io/tags/apache/</link>
-      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
-      
-      <guid>https://darkdefender27.github.io/tags/apache/</guid>
-      <description></description>
-    </item>
     
     <item>
-      <title>Clojure</title>
-      <link>https://darkdefender27.github.io/tags/clojure/</link>
-      <pubDate>Sat, 19 Jan 2019 23:26:56 +0530</pubDate>
-      
-      <guid>https://darkdefender27.github.io/tags/clojure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gunicorn</title>
-      <link>https://darkdefender27.github.io/tags/gunicorn/</link>
-      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
-      
-      <guid>https://darkdefender27.github.io/tags/gunicorn/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Postgresql</title>
-      <link>https://darkdefender27.github.io/tags/postgresql/</link>
+      <title>postgresql</title>
+      <link>https://shubhamutwal.in/tags/postgresql/</link>
       <pubDate>Tue, 26 Mar 2019 23:13:20 +0530</pubDate>
       
-      <guid>https://darkdefender27.github.io/tags/postgresql/</guid>
+      <guid>https://shubhamutwal.in/tags/postgresql/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Python</title>
-      <link>https://darkdefender27.github.io/tags/python/</link>
-      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+      <title>clojure</title>
+      <link>https://shubhamutwal.in/tags/clojure/</link>
+      <pubDate>Sat, 19 Jan 2019 23:26:56 +0530</pubDate>
       
-      <guid>https://darkdefender27.github.io/tags/python/</guid>
+      <guid>https://shubhamutwal.in/tags/clojure/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Wsgi</title>
-      <link>https://darkdefender27.github.io/tags/wsgi/</link>
+      <title>apache</title>
+      <link>https://shubhamutwal.in/tags/apache/</link>
       <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
       
-      <guid>https://darkdefender27.github.io/tags/wsgi/</guid>
+      <guid>https://shubhamutwal.in/tags/apache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gunicorn</title>
+      <link>https://shubhamutwal.in/tags/gunicorn/</link>
+      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+      
+      <guid>https://shubhamutwal.in/tags/gunicorn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://shubhamutwal.in/tags/python/</link>
+      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+      
+      <guid>https://shubhamutwal.in/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wsgi</title>
+      <link>https://shubhamutwal.in/tags/wsgi/</link>
+      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
+      
+      <guid>https://shubhamutwal.in/tags/wsgi/</guid>
       <description></description>
     </item>
     

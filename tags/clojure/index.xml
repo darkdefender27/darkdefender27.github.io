@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Clojure on Shubham Utwal</title>
-    <link>https://darkdefender27.github.io/tags/clojure/</link>
-    <description>Recent content in Clojure on Shubham Utwal</description>
+    <title>clojure on Shubham Utwal</title>
+    <link>https://shubhamutwal.in/tags/clojure/</link>
+    <description>Recent content in clojure on Shubham Utwal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
+    <copyright>&amp;copy; &lt;a href=&#34;https://shubhamutwal.in&#34;&gt;Shubham Utwal&lt;/a&gt; 2021</copyright>
     <lastBuildDate>Sat, 19 Jan 2019 23:26:56 +0530</lastBuildDate>
     
-	<atom:link href="https://darkdefender27.github.io/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://shubhamutwal.in/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>IN/Clojure 2019</title>
-      <link>https://darkdefender27.github.io/posts/in-clojure-2019/</link>
+      <link>https://shubhamutwal.in/posts/in-clojure-2019/</link>
       <pubDate>Sat, 19 Jan 2019 23:26:56 +0530</pubDate>
       
-      <guid>https://darkdefender27.github.io/posts/in-clojure-2019/</guid>
+      <guid>https://shubhamutwal.in/posts/in-clojure-2019/</guid>
       <description>Recently, I attended the ((((IN/Clojure)))) workshop which took place in Bangalore. The workshop was designed for two levels, a beginner &amp;amp; an intermediate one. Since, I had some previous knowledge around clojure, I signed up for the intermediate workshop.
 The day of the workshop, we were expected to be ready with our own crazy setup, as long as it worked. Since, we are on the this, one could have a working clojure environment setup in Vim, Visual Studio Code, Sublime Text, Emacs, Spacemacs, IntelliJ (with Cursive) and what not.</description>
     </item>

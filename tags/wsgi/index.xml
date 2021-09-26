@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Wsgi on Shubham Utwal</title>
-    <link>https://darkdefender27.github.io/tags/wsgi/</link>
-    <description>Recent content in Wsgi on Shubham Utwal</description>
+    <title>wsgi on Shubham Utwal</title>
+    <link>https://shubhamutwal.in/tags/wsgi/</link>
+    <description>Recent content in wsgi on Shubham Utwal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
+    <copyright>&amp;copy; &lt;a href=&#34;https://shubhamutwal.in&#34;&gt;Shubham Utwal&lt;/a&gt; 2021</copyright>
     <lastBuildDate>Sat, 17 Feb 2018 12:44:44 +0530</lastBuildDate>
     
-	<atom:link href="https://darkdefender27.github.io/tags/wsgi/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://shubhamutwal.in/tags/wsgi/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Apache Wsgi Configuration</title>
-      <link>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</link>
+      <link>https://shubhamutwal.in/posts/apache-wsgi-configuration/</link>
       <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
       
-      <guid>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</guid>
+      <guid>https://shubhamutwal.in/posts/apache-wsgi-configuration/</guid>
       <description>TLDR; In this post I have put down my experience in configuring apache to interact with apps written in Python.
 The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</description>
     </item>

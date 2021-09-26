@@ -1,104 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Posts on Shubham Utwal</title>
-		<link>https://darkdefender27.github.io/posts/</link>
+		<link>https://shubhamutwal.in/posts/</link>
 		<description>Recent content in Posts on Shubham Utwal</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<copyright>&amp;copy; &lt;a href=&#34;https://github.com/darkdefender27&#34;&gt;Shubham Utwal&lt;/a&gt; 2016</copyright>
+		<copyright>&amp;copy; &lt;a href=&#34;https://shubhamutwal.in&#34;&gt;Shubham Utwal&lt;/a&gt; 2021</copyright>
 		<lastBuildDate>Tue, 26 Mar 2019 23:13:20 +0530</lastBuildDate>
-		<atom:link href="https://darkdefender27.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://shubhamutwal.in/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Essential Postgresql Queries</title>
-			<link>https://darkdefender27.github.io/posts/postgresql-commands/</link>
+			<link>https://shubhamutwal.in/posts/postgresql-commands/</link>
 			<pubDate>Tue, 26 Mar 2019 23:13:20 +0530</pubDate>
 			
-			<guid>https://darkdefender27.github.io/posts/postgresql-commands/</guid>
+			<guid>https://shubhamutwal.in/posts/postgresql-commands/</guid>
 			<description>This post has a collated list of postgresql queries (taken from multiple sources) which are used on an almost daily basis.
-Age of unfrozen rows SELECT c.oid::regclass as table_name, greatest(age(c.relfrozenxid),age(t.relfrozenxid)) as age FROM pg_class c LEFT JOIN pg_class t ON c.reltoastrelid = t.oid WHERE c.relkind IN (&amp;#39;r&amp;#39;, &amp;#39;m&amp;#39;);SELECT datname, age(datfrozenxid) FROM pg_database; The age column measures the number of transactions from the cutoff XID to the current transaction&amp;rsquo;s XID. Here, the cutoff XID, relfrozenxid is the freeze cutoff XID that was used by the last whole-table VACUUM; likewise datfrozenxid is the lower bound on unfrozen XIDs for that database.</description>
-			<content type="html"><![CDATA[
-
-<p>This post has a collated list of postgresql queries (taken from multiple sources) which are used on an almost daily basis.</p>
-
-<hr />
-
+ Age of unfrozen rows SELECT c.oid::regclass as table_name, greatest(age(c.relfrozenxid),age(t.relfrozenxid)) as age FROM pg_class c LEFT JOIN pg_class t ON c.reltoastrelid = t.oid WHERE c.relkind IN (&#39;r&#39;, &#39;m&#39;); SELECT datname, age(datfrozenxid) FROM pg_database; The age column measures the number of transactions from the cutoff XID to the current transaction&amp;rsquo;s XID.</description>
+			<content type="html"><![CDATA[<p>This post has a collated list of postgresql queries (taken from multiple sources) which are used on an almost daily basis.</p>
+<hr>
 <h2 id="age-of-unfrozen-rows">Age of unfrozen rows</h2>
-<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">SELECT c.oid::regclass as table_name,
+<pre><code class="language-psql" data-lang="psql">SELECT c.oid::regclass as table_name,
        greatest(age(c.relfrozenxid),age(t.relfrozenxid)) as age
 FROM pg_class c
 LEFT JOIN pg_class t ON c.reltoastrelid = t.oid
-WHERE c.relkind IN (&#39;r&#39;, &#39;m&#39;);</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">SELECT datname, age(datfrozenxid) FROM pg_database;</code></pre></div>
-<p>The age column measures the number of transactions from the cutoff XID to the current transaction&rsquo;s XID. Here, the cutoff XID, <code>relfrozenxid</code> is the freeze cutoff XID that was used by the last whole-table VACUUM; likewise <code>datfrozenxid</code> is the lower bound on unfrozen XIDs for that database.</p>
-
-<hr />
-
+WHERE c.relkind IN ('r', 'm');
+</code></pre><pre><code class="language-psql" data-lang="psql">SELECT datname, age(datfrozenxid) FROM pg_database;
+</code></pre><p>The age column measures the number of transactions from the cutoff XID to the current transaction&rsquo;s XID. Here, the cutoff XID, <code>relfrozenxid</code> is the freeze cutoff XID that was used by the last whole-table VACUUM; likewise <code>datfrozenxid</code> is the lower bound on unfrozen XIDs for that database.</p>
+<hr>
 <h2 id="currently-running-queries">Currently running queries</h2>
-<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">SELECT pid, query, query_start FROM pg_stat_activity where state = &#39;active&#39;;</code></pre></div>
-<hr />
-
-<h2 id="replication-status-on-master-slave">Replication Status on Master/Slave</h2>
-<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql"># check replication/streaming status on MASTER
+<pre><code class="language-psql" data-lang="psql">SELECT pid, query, query_start FROM pg_stat_activity where state = 'active';
+</code></pre><hr>
+<h2 id="replication-status-on-masterslave">Replication Status on Master/Slave</h2>
+<pre><code class="language-psql" data-lang="psql"># check replication/streaming status on MASTER
 SELECT application_name,client_addr,state, \\
                  (sent_offset - (replay_offset - (sent_xlog - replay_xlog) * 255 * 16 ^ 6 ))::text AS byte_lag \\
                   FROM (SELECT \\
 application_name,client_addr,state,sync_state,sent_lsn,write_lsn,replay_lsn, \\
-                          (&#39;x&#39; || lpad(split_part(sent_lsn::text,   &#39;/&#39;, 1), 8, &#39;0&#39;))::bit(32)::bigint AS sent_xlog, \\
-                          (&#39;x&#39; || lpad(split_part(replay_lsn::text, &#39;/&#39;, 1), 8, &#39;0&#39;))::bit(32)::bigint AS replay_xlog, \\
-                          (&#39;x&#39; || lpad(split_part(sent_lsn::text,   &#39;/&#39;, 2), 8, &#39;0&#39;))::bit(32)::bigint AS sent_offset, \\
-                          (&#39;x&#39; || lpad(split_part(replay_lsn::text, &#39;/&#39;, 2), 8, &#39;0&#39;))::bit(32)::bigint AS replay_offset \\
+                          ('x' || lpad(split_part(sent_lsn::text,   '/', 1), 8, '0'))::bit(32)::bigint AS sent_xlog, \\
+                          ('x' || lpad(split_part(replay_lsn::text, '/', 1), 8, '0'))::bit(32)::bigint AS replay_xlog, \\
+                          ('x' || lpad(split_part(sent_lsn::text,   '/', 2), 8, '0'))::bit(32)::bigint AS sent_offset, \\
+                          ('x' || lpad(split_part(replay_lsn::text, '/', 2), 8, '0'))::bit(32)::bigint AS replay_offset \\
                         FROM pg_stat_replication) \\
                   AS s;
 
 # check time elapsed since last replication on SLAVE
-select now() - pg_last_xact_replay_timestamp() AS replication_delay;</code></pre></div>
-<hr />
-
-<h2 id="time-when-auto-vacuum-auto-analyze-last-ran">Time when (auto)vacuum &amp; (auto)analyze last ran</h2>
-<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">select relname, last_vacuum, last_autovacuum, last_analyze, last_autoanalyze from pg_stat_user_tables;</code></pre></div>
-<hr />
-
+select now() - pg_last_xact_replay_timestamp() AS replication_delay;
+</code></pre><hr>
+<h2 id="time-when-autovacuum--autoanalyze-last-ran">Time when (auto)vacuum &amp; (auto)analyze last ran</h2>
+<pre><code class="language-psql" data-lang="psql">select relname, last_vacuum, last_autovacuum, last_analyze, last_autoanalyze from pg_stat_user_tables;
+</code></pre><hr>
 <h2 id="number-of-live-tuples-and-dead-tuples">Number of live tuples and dead tuples</h2>
-<div class="highlight"><pre class="chroma"><code class="language-psql" data-lang="psql">SELECT pg_stat_get_live_tuples(c.oid) AS n_live_tup, pg_stat_get_dead_tuples(c.oid) AS n_dead_tup FROM pg_class c where c.relname = &#39;&lt;relname&gt;&#39;;</code></pre></div>]]></content>
+<pre><code class="language-psql" data-lang="psql">SELECT pg_stat_get_live_tuples(c.oid) AS n_live_tup, pg_stat_get_dead_tuples(c.oid) AS n_dead_tup FROM pg_class c where c.relname = '&lt;relname&gt;';
+</code></pre>]]></content>
 		</item>
 		
 		<item>
 			<title>IN/Clojure 2019</title>
-			<link>https://darkdefender27.github.io/posts/in-clojure-2019/</link>
+			<link>https://shubhamutwal.in/posts/in-clojure-2019/</link>
 			<pubDate>Sat, 19 Jan 2019 23:26:56 +0530</pubDate>
 			
-			<guid>https://darkdefender27.github.io/posts/in-clojure-2019/</guid>
+			<guid>https://shubhamutwal.in/posts/in-clojure-2019/</guid>
 			<description>Recently, I attended the ((((IN/Clojure)))) workshop which took place in Bangalore. The workshop was designed for two levels, a beginner &amp;amp; an intermediate one. Since, I had some previous knowledge around clojure, I signed up for the intermediate workshop.
 The day of the workshop, we were expected to be ready with our own crazy setup, as long as it worked. Since, we are on the this, one could have a working clojure environment setup in Vim, Visual Studio Code, Sublime Text, Emacs, Spacemacs, IntelliJ (with Cursive) and what not.</description>
-			<content type="html"><![CDATA[<p>Recently, I attended the <a href="https://inclojure.org/" target="_blank">((((IN/Clojure))))</a> workshop which took place in Bangalore. The workshop was designed for two levels, a beginner &amp; an intermediate one. Since, I had some previous knowledge around clojure, I signed up for the intermediate workshop.</p>
-
-<p>The day of the workshop, we were expected to be ready with our own crazy setup, as long as it worked. Since, we are on the this, one could have a working clojure environment setup in <em>Vim, Visual Studio Code, Sublime Text, Emacs, Spacemacs, IntelliJ (with Cursive)</em> and what not. I now use Spacemacs having tried my hands on plain vanilla Emacs with certain tweaks <a href="https://github.com/darkdefender27/dotemacs" target="_blank">(dotfile for Emacs)</a>.</p>
-
+			<content type="html"><![CDATA[<p>Recently, I attended the <a href="https://inclojure.org/">((((IN/Clojure))))</a> workshop which took place in Bangalore. The workshop was designed for two levels, a beginner &amp; an intermediate one. Since, I had some previous knowledge around clojure, I signed up for the intermediate workshop.</p>
+<p>The day of the workshop, we were expected to be ready with our own crazy setup, as long as it worked. Since, we are on the this, one could have a working clojure environment setup in <em>Vim, Visual Studio Code, Sublime Text, Emacs, Spacemacs, IntelliJ (with Cursive)</em> and what not. I now use Spacemacs having tried my hands on plain vanilla Emacs with certain tweaks <a href="https://github.com/darkdefender27/dotemacs">(dotfile for Emacs)</a>.</p>
 <p>Every workshop/conference one has attended knows this well - it does not start without any wifi hassles. After overcoming those, we kickstarted with solving a basic problem of reading and processing data in a <em>.csv</em> file and then dumping the processed data in a database; and finally exposing a <em>GET</em> endpoint which reads &amp; omits out these records.</p>
-
 <p>I got to replenish my stale knowledge on <em>Lazy Seq, Java Interop, REPL</em> interaction and of course <em>Spacemacs</em> shortcuts :p. The workshop further covered  concepts like Concurrency in Clojure, the motivation behind Clojure having immutable data structures, <em>Futures, Refs, Atoms, STMs,</em> a cool <code>Rock-Paper-Scissor</code> exercise demonstrating the above mentioned concepts.</p>
-
 <p>The final segment of the workshop dealt with <code>core-async</code>. The same pattern was followed here as well, concepts and then exercises which worked-up those concepts. During this segment, I learnt how, using <em>core-async</em>, one can solve or scale the earlier problem of reading and processing data from a source, when your source is emitting out data in realtime (Streams!). To end the workshop, we solved the exercise, using <em>core-async&rsquo;s</em> channels; the exercise already had a base streaming solution in place with appropriate expressions to be filled in the blanks.</p>
-
-<p>The content of the workshop had a good amount of variation, it went on from basics to intermediate to some advanced clojure at an appropriate pace. A well documented workshop material is made available on <a href="https://github.com/inclojure-org/intermediate-clojure-workshop/" target="_blank">Github</a>. So, just clone your way into the world of Fun Fun Functions!</p>
-
-<hr />
-
-<p><img src="../../images/lanyard_in_clojure_2019.jpg" alt="img" /></p>
+<p>The content of the workshop had a good amount of variation, it went on from basics to intermediate to some advanced clojure at an appropriate pace. A well documented workshop material is made available on <a href="https://github.com/inclojure-org/intermediate-clojure-workshop/">Github</a>. So, just clone your way into the world of Fun Fun Functions!</p>
+<hr>
+<p><img src="../../images/lanyard_in_clojure_2019.jpg" alt="img"></p>
 ]]></content>
 		</item>
 		
 		<item>
 			<title>Apache Wsgi Configuration</title>
-			<link>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</link>
+			<link>https://shubhamutwal.in/posts/apache-wsgi-configuration/</link>
 			<pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
 			
-			<guid>https://darkdefender27.github.io/posts/apache-wsgi-configuration/</guid>
+			<guid>https://shubhamutwal.in/posts/apache-wsgi-configuration/</guid>
 			<description>TLDR; In this post I have put down my experience in configuring apache to interact with apps written in Python.
 The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</description>
 			<content type="html"><![CDATA[<p>TLDR; In this post I have put down my experience in configuring apache to interact with apps written in Python.</p>
-
 <p>The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</p>
 ]]></content>
 		</item>
