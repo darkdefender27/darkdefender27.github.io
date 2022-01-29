@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge"><meta itemprop="name" content="Using CompletableFuture for parallelism, and variants of ThreadPoolExecutors">
+<meta itemprop="description" content="Completable Futures &amp; ForkJoinPool CompletableFutures prove useful in areas where one has to perform multiple tasks in a parallel manner, probably wait on them and combine the results.
+By default, the CompletableFuture implementation makes use of the commonPool provided by the ForkJoinPool framework. The distinguishing thing between other ThreadPoolExecutors &amp; ForkJoinPool is the workStealing implementation.
+Quoting the docs -
+ all threads in the pool attempt to find and execute tasks submitted to the pool and/or created by other active tasks (eventually blocking waiting for work if none exist).">
+<meta itemprop="datePublished" content="2022-01-29T18:40:02+05:30" />
+<meta itemprop="dateModified" content="2022-01-29T18:40:02+05:30" />
+<meta itemprop="wordCount" content="577">
+
+
+
+<meta itemprop="keywords" content="java,parallelism," />
+<meta property="og:title" content="Using CompletableFuture for parallelism, and variants of ThreadPoolExecutors" />
+<meta property="og:description" content="Completable Futures &amp; ForkJoinPool CompletableFutures prove useful in areas where one has to perform multiple tasks in a parallel manner, probably wait on them and combine the results.
+By default, the CompletableFuture implementation makes use of the commonPool provided by the ForkJoinPool framework. The distinguishing thing between other ThreadPoolExecutors &amp; ForkJoinPool is the workStealing implementation.
+Quoting the docs -
+ all threads in the pool attempt to find and execute tasks submitted to the pool and/or created by other active tasks (eventually blocking waiting for work if none exist)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shubhamutwal.in/posts/parallelism-in-java/" />
+<meta property="article:published_time" content="2022-01-29T18:40:02+05:30" />
+<meta property="article:modified_time" content="2022-01-29T18:40:02+05:30" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using CompletableFuture for parallelism, and variants of ThreadPoolExecutors"/>
+<meta name="twitter:description" content="Completable Futures &amp; ForkJoinPool CompletableFutures prove useful in areas where one has to perform multiple tasks in a parallel manner, probably wait on them and combine the results.
+By default, the CompletableFuture implementation makes use of the commonPool provided by the ForkJoinPool framework. The distinguishing thing between other ThreadPoolExecutors &amp; ForkJoinPool is the workStealing implementation.
+Quoting the docs -
+ all threads in the pool attempt to find and execute tasks submitted to the pool and/or created by other active tasks (eventually blocking waiting for work if none exist)."/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Using CompletableFuture for parallelism, and variants of ThreadPoolExecutors</title>
+	<link rel="stylesheet" href="https://shubhamutwal.in/css/style.min.414ce1f9c890e5ea78db294d1fe07417fdb3f4c55a185e3137e9ed3185eadb52.css" integrity="sha256-QUzh+ciQ5ep42ylNH+B0F/2z9MVaGF4xN+ntMYXq21I=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://shubhamutwal.in">Shubham Utwal</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="https://shubhamutwal.in/posts/">Posts</a>
+					<a href="https://shubhamutwal.in/about/">About</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/darkdefender27" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="https://instagram.com/_b.mag/" target="_blank" rel="noopener" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://in.linkedin.com/in/shubhamutwal" target="_blank" rel="noopener" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://www.facebook.com/shubhamutwal" target="_blank" rel="noopener" title="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a><a href="mailto:shubhamutwal@gmail.com" target="_blank" rel="noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://shubhamutwal.in/posts/">Posts</a></li>
+			<li><a href="https://shubhamutwal.in/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 29, 2022</span></div>
+				<h1>Using CompletableFuture for parallelism, and variants of ThreadPoolExecutors</h1>
+			</header>
+			<div class="content">
+				<h2 id="completable-futures--forkjoinpool">Completable Futures &amp; ForkJoinPool</h2>
+<p>CompletableFutures prove useful in areas where one has to perform multiple tasks in a parallel manner, probably wait on them and combine the results.</p>
+<p>By default, the CompletableFuture implementation makes use of the commonPool provided by the ForkJoinPool framework. The distinguishing thing between other ThreadPoolExecutors &amp; ForkJoinPool is the workStealing implementation.</p>
+<p>Quoting the docs -</p>
+<blockquote>
+<p>all threads in the pool attempt to find and execute tasks submitted to the pool and/or created by other active tasks (eventually blocking waiting for work if none exist). This enables efficient processing when most tasks spawn other subtasks (as do most ForkJoinTasks), as well as when many small tasks are submitted to the pool from external clients. Using the common pool normally reduces resource usage (its threads are slowly reclaimed during periods of non-use, and reinstated upon subsequent use).</p>
+</blockquote>
+<p>The pool is preferable for a use case that is non-blocking in nature.</p>
+<p>Quoting the docs again -</p>
+<blockquote>
+<p>a ForkJoinPool may be constructed with a given target parallelism level; by default, equal to the number of available processors. The pool attempts to maintain enough active (or available) threads by dynamically adding, suspending, or resuming internal worker threads, even if some tasks are stalled waiting to join others. However, no such adjustments are guaranteed in the face of blocked I/O or other unmanaged synchronization.</p>
+</blockquote>
+<p>If there happens to be a blocking call, it’ll block the execution of the other parts of the system that depend on the same commonPool. Hence, in general, it’s better to have a separate executor/thread pool passed to our CompletableFuture implementation if the requirement involves any form of blocking I/O.</p>
+<p>This <a href="https://dzone.com/articles/be-aware-of-forkjoinpoolcommonpool">blog</a> &amp; <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ForkJoinPool.html">the official documentation</a> further shares the common pitfalls of using the commonPool.</p>
+<h2 id="using-a-custom-threadpoolexecutor">Using a Custom ThreadPoolExecutor</h2>
+<p>ThreadPoolExecutors provide a means to execute tasks using the pooled threads. This not only reduces the overhead of creating new threads for each new submitted task, but also ensures that the resource utilization is not unbounded.</p>
+<p>Instantiating the ThreadPoolExecutor requires setting the parameters appropriately; one should study the parameters such as core and maximum pool sizes, keepAliveTimes, workQueues &amp; tune them to their use case. Refer the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html">JavaDocs - ThreadPoolExecutor</a> for understanding the meanings &amp; the defaults of the parameters. That said, it’s urged to use the factory methods provided by the Executors class, a couple of them important ones are discussed below -</p>
+<ul>
+<li>
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Executors.html#newWorkStealingPool()">newWorkStealingPool()</a> - Creates a work-stealing thread pool using the number of available processors as its target parallelism level. It may use multiple queues to reduce contention. It however, does not guarantee the order of execution in which the requests were submitted.</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Executors.html#newCachedThreadPool()">newCachedThreadPool()</a> - Creates a thread pool that creates new threads as needed, but will reuse previously constructed threads when they are available, and uses the provided ThreadFactory to create new threads when needed. It uses SynchronousQueue (a good default choice for a work queue) with ​​unbounded maximumCorePoolSize. (ref: <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html">Direct Handoffs strategy of Queueing</a>)</p>
+</li>
+</ul>
+<p>Besides the above two, one can create a <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Executors.html#newFixedThreadPool()">newFixedThreadPool()</a> (reuses a fixed number of threads operating on an unbounded shared workQueue), <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Executors.html#newSingleThreadExecutor()">newSingleThreadExecutor()</a> (single thread operating on an unbounded shared workQueue), <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Executors.html#newScheduledThreadPool()">newScheduledThreadPool()</a> (can be used to schedule tasks to run after a delay).</p>
+<p>💡 As a matter of fact, gRPC, internally uses a CachedThreadPool by default for managing the app threads; It is in fact the default Thread Executor, reasons for the same are explained in the comment - <a href="https://github.com/grpc/grpc-java/issues/7381#issuecomment-684938279">https://github.com/grpc/grpc-java/issues/7381#issuecomment-684938279</a>.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.infoq.com/articles/Functional-Style-Callbacks-Using-CompletableFuture/">https://www.infoq.com/articles/Functional-Style-Callbacks-Using-CompletableFuture/</a></li>
+<li><a href="https://dzone.com/articles/be-aware-of-forkjoinpoolcommonpool">https://dzone.com/articles/be-aware-of-forkjoinpoolcommonpool</a></li>
+<li><a href="https://dzone.com/articles/how-much-memory-does-a-java-thread-take">https://dzone.com/articles/how-much-memory-does-a-java-thread-take</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/pools.html">https://docs.oracle.com/javase/tutorial/essential/concurrency/pools.html</a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html">https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html</a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ForkJoinPool.html">https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ForkJoinPool.html</a></li>
+<li><a href="https://www.baeldung.com/java-completablefuture">https://www.baeldung.com/java-completablefuture</a></li>
+<li><a href="https://www.baeldung.com/java-fork-join#2-forkjoinpool-instantiation">https://www.baeldung.com/java-fork-join#2-forkjoinpool-instantiation</a></li>
+</ul>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://shubhamutwal.in/tags/java">java</a></span><span class="tag"><a href="https://shubhamutwal.in/tags/parallelism">parallelism</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>577 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2022-01-29 18:40 &#43;0530</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://shubhamutwal.in/posts/postgresql-commands/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Essential Postgresql Queries</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shubhamutwal" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2022 <a href="https://shubhamutwal.in">Shubham Utwal</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://shubhamutwal.in/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="https://shubhamutwal.in/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-132832700-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://shubhamutwal.in/tags/java/</loc>
+    <lastmod>2022-01-29T18:40:02+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://shubhamutwal.in/tags/parallelism/</loc>
+    <lastmod>2022-01-29T18:40:02+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://shubhamutwal.in/posts/</loc>
+    <lastmod>2022-01-29T18:40:02+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://shubhamutwal.in/</loc>
+    <lastmod>2022-01-29T18:40:02+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://shubhamutwal.in/tags/</loc>
+    <lastmod>2022-01-29T18:40:02+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://shubhamutwal.in/posts/parallelism-in-java/</loc>
+    <lastmod>2022-01-29T18:40:02+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>https://shubhamutwal.in/about/</loc>
     <lastmod>2022-01-29T00:00:00+00:00</lastmod>
   </url>
@@ -14,21 +44,6 @@
   
   <url>
     <loc>https://shubhamutwal.in/tags/postgresql/</loc>
-    <lastmod>2019-03-26T23:13:20+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://shubhamutwal.in/posts/</loc>
-    <lastmod>2019-03-26T23:13:20+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://shubhamutwal.in/</loc>
-    <lastmod>2019-03-26T23:13:20+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://shubhamutwal.in/tags/</loc>
     <lastmod>2019-03-26T23:13:20+05:30</lastmod>
   </url>
   
