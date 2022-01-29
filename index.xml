@@ -2,76 +2,55 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shubham Utwal</title>
-    <link>https://shubhamutwal.in/index.html</link>
+    <link>https://shubhamutwal.in/</link>
     <description>Recent content on Shubham Utwal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; &lt;a href=&#34;https://shubhamutwal.in&#34;&gt;Shubham Utwal&lt;/a&gt; 2021</copyright>
+    <lastBuildDate>Tue, 26 Mar 2019 23:13:20 +0530</lastBuildDate>
     
 	<atom:link href="https://shubhamutwal.in/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>postgresql</title>
-      <link>https://shubhamutwal.in/tags/postgresql/</link>
-      <pubDate>Tue, 26 Mar 2019 23:13:20 +0530</pubDate>
+      <title>About</title>
+      <link>https://shubhamutwal.in/about/</link>
+      <pubDate>Sat, 29 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://shubhamutwal.in/tags/postgresql/</guid>
-      <description></description>
+      <guid>https://shubhamutwal.in/about/</guid>
+      <description>Hey Guys,
+I&amp;rsquo;m Shubham Utwal - Software Engineer at Gojek. Currently I am working in the payments vertical of Gojek (GoTo) i.e. GoTo Financials. I have a history of working in the Gaming &amp;amp; Banking industries as well. Payments, Distributed Systems &amp;amp; Data are the things which interests me. I also follow and play Football (Barça fan!). I do photography, albeit rare.
+Contact me at: shubhamutwal@gmail.com</description>
     </item>
     
     <item>
-      <title>Tags</title>
-      <link>https://shubhamutwal.in/tags/</link>
+      <title>Essential Postgresql Queries</title>
+      <link>https://shubhamutwal.in/posts/postgresql-commands/</link>
       <pubDate>Tue, 26 Mar 2019 23:13:20 +0530</pubDate>
       
-      <guid>https://shubhamutwal.in/tags/</guid>
-      <description></description>
+      <guid>https://shubhamutwal.in/posts/postgresql-commands/</guid>
+      <description>This post has a collated list of postgresql queries (taken from multiple sources) which are used on an almost daily basis.
+ Age of unfrozen rows SELECT c.oid::regclass as table_name, greatest(age(c.relfrozenxid),age(t.relfrozenxid)) as age FROM pg_class c LEFT JOIN pg_class t ON c.reltoastrelid = t.oid WHERE c.relkind IN (&#39;r&#39;, &#39;m&#39;); SELECT datname, age(datfrozenxid) FROM pg_database; The age column measures the number of transactions from the cutoff XID to the current transaction&amp;rsquo;s XID.</description>
     </item>
     
     <item>
-      <title>clojure</title>
-      <link>https://shubhamutwal.in/tags/clojure/</link>
+      <title>IN/Clojure 2019</title>
+      <link>https://shubhamutwal.in/posts/in-clojure-2019/</link>
       <pubDate>Sat, 19 Jan 2019 23:26:56 +0530</pubDate>
       
-      <guid>https://shubhamutwal.in/tags/clojure/</guid>
-      <description></description>
+      <guid>https://shubhamutwal.in/posts/in-clojure-2019/</guid>
+      <description>Recently, I attended the ((((IN/Clojure)))) workshop which took place in Bangalore. The workshop was designed for two levels, a beginner &amp;amp; an intermediate one. Since, I had some previous knowledge around clojure, I signed up for the intermediate workshop.
+The day of the workshop, we were expected to be ready with our own crazy setup, as long as it worked. Since, we are on the this, one could have a working clojure environment setup in Vim, Visual Studio Code, Sublime Text, Emacs, Spacemacs, IntelliJ (with Cursive) and what not.</description>
     </item>
     
     <item>
-      <title>apache</title>
-      <link>https://shubhamutwal.in/tags/apache/</link>
+      <title>Apache Wsgi Configuration</title>
+      <link>https://shubhamutwal.in/posts/apache-wsgi-configuration/</link>
       <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
       
-      <guid>https://shubhamutwal.in/tags/apache/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gunicorn</title>
-      <link>https://shubhamutwal.in/tags/gunicorn/</link>
-      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
-      
-      <guid>https://shubhamutwal.in/tags/gunicorn/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://shubhamutwal.in/tags/python/</link>
-      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
-      
-      <guid>https://shubhamutwal.in/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>wsgi</title>
-      <link>https://shubhamutwal.in/tags/wsgi/</link>
-      <pubDate>Sat, 17 Feb 2018 12:44:44 +0530</pubDate>
-      
-      <guid>https://shubhamutwal.in/tags/wsgi/</guid>
-      <description></description>
+      <guid>https://shubhamutwal.in/posts/apache-wsgi-configuration/</guid>
+      <description>TLDR; In this post I have put down my experience in configuring apache to interact with apps written in Python.
+The bulk of this post is about how to set up Gunicorn as a WSGI HTTP Server to launch Python application(s) using the Flask micro-framework and Apache to act as a frontend reverse proxy.</description>
     </item>
     
   </channel>
